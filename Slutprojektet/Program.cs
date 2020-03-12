@@ -10,6 +10,20 @@ namespace Slutprojektet
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Vad heter jag?");
+
+            string nameGuess = Console.ReadLine();
+
+            Guess(nameGuess);
+
+        }
+
+        static void Guess(string solution)
+        {
+            if (solution == "love")
+            {
+                
+            }
         }
     }
 }
