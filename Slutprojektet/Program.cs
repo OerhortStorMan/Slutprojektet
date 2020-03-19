@@ -27,3 +27,18 @@ namespace Slutprojektet
         }
     }
 }
+
+/*
+ //
+            Console.WriteLine("Vad heter jag? A: love B: axel");
+            string answer = Console.ReadLine();
+
+            string solution = Answer(solutionArray[0]);
+            //
+
+    static Array Answer()
+        {
+            string[] solutionArray = {"A", "B", "A", "C"};
+        }
+     
+     */
