@@ -10,35 +10,23 @@ namespace Slutprojektet
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Vad heter jag?");
+            
 
-            string nameGuess = Console.ReadLine();
+            //välkommen till min butik
 
-            Guess(nameGuess);
+            //(köper två saker som kostar pris)
 
+            //skiver totalpris
         }
 
-        static void Guess(string solution)
+        static void X()
         {
-            if (solution == "love")
-            {
-                
-            }
+            //(multiplicerar pris med antal och returnerar total pris
         }
+
+
+        //parametrar skadar min hjärna, fattar *0*
     }
 }
 
-/*
- //
-            Console.WriteLine("Vad heter jag? A: love B: axel");
-            string answer = Console.ReadLine();
 
-            string solution = Answer(solutionArray[0]);
-            //
-
-    static Array Answer()
-        {
-            string[] solutionArray = {"A", "B", "A", "C"};
-        }
-     
-     */
