@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Slutprojektet
 {
@@ -11,10 +12,11 @@ namespace Slutprojektet
         static void Main(string[] args)
         {
             Console.WriteLine("\n Du har öppnat Loves Kalkylator.");
+            Thread.Sleep(1250);
             bool programRunning = true;
             while (programRunning)
             {
-
+                Console.Clear();
                 Console.WriteLine("\n Vad vill du räkna ut?");
                 Console.WriteLine(@"
     1:[+]   2:[-]
@@ -48,7 +50,6 @@ namespace Slutprojektet
 
                 if (inputInt == 1)
                 {
-
 
                     bool successfulAmount = false;
                     int amountInt = 0;
@@ -106,15 +107,70 @@ namespace Slutprojektet
 
                     int sum = SummarizePlus(amount);
 
-                    Console.WriteLine(sum);
-
-                    Console.WriteLine(amount[0] + " " + amount[3]);
+                    Console.WriteLine("Summan: " + sum);
 
                 }
 
                 else if (inputInt == 2)
                 {
+                    bool successfulAmount = false;
+                    int amountInt = 0;
+                    while (successfulAmount == false)
+                    {
+                        //här så vill jag sätta att man matar in start värdet och sedan så är det = sum i SummarizeSub();
+                        Console.WriteLine("\n Hur många tal vill du subtrahera? (notera att första inmatningsvärdet är ditt startvärde)");
+                        string input = Console.ReadLine();
 
+                        if (!int.TryParse(input, out amountInt))
+                        {
+                            Console.WriteLine("\n Endast siffor, tack.");
+                        }
+                        else
+                        {
+                            if (amountInt < 1)
+                            {
+                                Console.WriteLine("\n Endast siffror över 1, tack.");
+                            }
+                            else
+                            {
+                                successfulAmount = true;
+                            }
+                        }
+                    }
+
+                    int[] amount = new int[amountInt];
+                    Console.WriteLine("Vänligen skriv ut talen");
+
+                    for (int i = 0; i != amountInt; i++)
+                    {
+                        int num = i + 1;
+
+                        bool success = false;
+                        int element = 0;
+                        while (success == false)
+                        {
+                            Console.WriteLine("\n" + num + ":");
+                            string input = Console.ReadLine();
+
+                            if (!int.TryParse(input, out element))
+                            {
+                                Console.WriteLine("\n Endast siffor, tack.");
+                            }
+                            else
+                            {
+
+                                success = true;
+                                Console.WriteLine();
+
+                            }
+                        }
+
+                        amount[i] = element;
+                    }
+
+                    int sum = SummarizeSub(amount);
+
+                    Console.WriteLine("Summan: " + sum);
                 }
 
                 else if (inputInt == 3)
@@ -127,7 +183,7 @@ namespace Slutprojektet
 
                 }
 
-                Console.WriteLine("success");
+                Console.WriteLine("Success");
                 Console.ReadLine();
 
             }
@@ -144,13 +200,19 @@ namespace Slutprojektet
             return sum;
         }
 
-        /*static int Plus()
+        static int SummarizeSub(int[] amount)
         {
-            //(multiplicerar pris med antal och returnerar total pris
+            //här så multiplicerar jag första talet ggr 2 så att det slår ut sig själv i första uträkningen i forloopen, detta gör att
+            //första inmatningen som använderen gör definieras som dess starttal, precis som angett ovan.
+            int sum = amount[0]*2;
+            for (int i = 0; i < amount.Length; i++)
+            {
+                sum = sum - amount[i];
+            }
+
+            return sum;
         }
 
-
-        //parametrar skadar min hjärna, fattar *0**/
     }
 }
 
