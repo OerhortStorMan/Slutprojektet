@@ -14,7 +14,7 @@ namespace Slutprojektet
             Console.WriteLine("\n Du har öppnat Loves Kalkylator.");
             Thread.Sleep(1250);
 
-            //loopar programmet
+            //loopar programmet så det inte slutar förränn användaren stänger ned det
             bool programRunning = true;
             while (programRunning)
             {
@@ -27,6 +27,8 @@ namespace Slutprojektet
 
                 //ser till så användaren skriver en korrekt input
                 bool successfulInput = false;
+
+                //skapar inputInt för att undvika error vid tryparse
                 int inputInt = 0;
                 while (successfulInput == false)
                 {
@@ -46,6 +48,7 @@ namespace Slutprojektet
                         }
                         else
                         {
+                            //avslutar loopen såvida allt är korrekt
                             successfulInput = true;
                         }
                     }
@@ -68,6 +71,7 @@ namespace Slutprojektet
                         }
                         else
                         {
+                            //ser till så att användaren skriver in att det ska vara minst ett tal, ser dock inte varför man skulle vilja addera endast ett tal med inget...
                             if (amountInt < 1)
                             {
                                 Console.WriteLine("Endast siffror över 1, tack.");
@@ -83,12 +87,15 @@ namespace Slutprojektet
                     int[] amount = new int[amountInt];
                     Console.WriteLine("Vänligen skriv ut talen");
 
-                    //Här så tar programmet input av de tal som användaren vill räkna ut
-                    for (int i = 0; i != amountInt; i++)
+                    //Här så tar programmet input av de tal som användaren vill räkna ut 
+                    for (int i = 0; i < amount.Length; i++)
                     {
+                        //int num är här att i konsolen säga till användaren vilket tal den kommer skriva, syns nedan under while-loopen
                         int num = i + 1;
 
                         bool success = false;
+
+                        //skapar int element, där element är det tal som kommer ta angiven talposition i arrayen som användaren anger nedan
                         int element = 0;
                         while (success == false)
                         {
@@ -101,23 +108,22 @@ namespace Slutprojektet
                                 Console.WriteLine("\n Endast siffor, tack.");
                             }
                             else
-                            {
-
+                            { 
                                 success = true;
+                                //(styckes indelare endast:)
                                 Console.WriteLine();
-
                             }
                         }
 
-                        //lägger in elementet i arrayen
+                        //lägger in elementet i arrayen för i-positionen
                         amount[i] = element;
                     }
                    
-                    //hämtar en array som med parameterar returnerar sedan ett värde
+                    //hämtar en array som med parameterar sedan returnerar ett värde
                     int sum = SummarizePlus(amount);
 
+                    //skriver ut summan och går tillbaka till starten
                     Console.WriteLine("Summan: " + sum);
-
                 }
 
                 else if (inputInt == 2)
@@ -126,8 +132,8 @@ namespace Slutprojektet
                     int amountInt = 0;
                     while (successfulAmount == false)
                     {
-                        //här så vill jag sätta att man matar in start värdet och sedan så är det = sum i SummarizeSub();
-                        Console.WriteLine("\n Hur många tal vill du subtrahera? (notera att första inmatningsvärdet är ditt startvärde)");
+                        //ber om input för antalet tal, där första kommer vara ett startvärde
+                        Console.WriteLine("\n Hur många tal vill du subtrahera? (OBS: första inmatningsvärdet är ditt startvärde!)");
                         string input = Console.ReadLine();
 
                         if (!int.TryParse(input, out amountInt))
@@ -148,15 +154,16 @@ namespace Slutprojektet
                     }
 
                     int[] amount = new int[amountInt];
-                    Console.WriteLine("Vänligen skriv ut talen");
+                    Console.WriteLine("Vänligen skriv ut talen.");
 
-                    for (int i = 0; i != amountInt; i++)
+                    for (int i = 0; i < amount.Length; i++)
                     {
+                        //int num för att vägleda vilken talposition det är användaren fyller i
                         int num = i + 1;
 
                         bool success = false;
                         int element = 0;
-                        while (success == false)
+                        while (!success)
                         {
                             Console.WriteLine("\n" + num + ":");
                             string input = Console.ReadLine();
@@ -166,11 +173,9 @@ namespace Slutprojektet
                                 Console.WriteLine("\n Endast siffor, tack.");
                             }
                             else
-                            {
-
+                            { 
                                 success = true;
                                 Console.WriteLine();
-
                             }
                         }
 
@@ -200,13 +205,12 @@ namespace Slutprojektet
 
         static int SummarizePlus(int[] amount)
         {
-            //börjar med att ange sum
+            //börjar med att skapa sum
             int sum = 0;
 
             //för varje amount.Length så utför den ett arbete där den adderar ett tal från amount arrayen till sum
             for (int i = 0; i < amount.Length; i++)
             {
-                
                 sum = sum + amount[i];
             }
 
@@ -216,14 +220,16 @@ namespace Slutprojektet
 
         static int SummarizeSub(int[] amount)
         {
-            //för att första talet som användaren skriver in ska vara ett start tal (som ska vara positivt) så sätter jag först att sum = amount[0]
+            //för att första talet som användaren skriver in ska vara ett start tal så sätter jag först att sum = amount[0]
             int sum = amount[0];
+
             //här så börjar första uträkningen på i=1 istället för i=0, detta är för att unvika så att programmet inte subtraherar starttalet med sig själv 
             for (int i = 1; i < amount.Length; i++)
             {
                 sum = sum - amount[i];
             }
 
+            //returnerar sum
             return sum;
         }
 
