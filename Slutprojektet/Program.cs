@@ -83,7 +83,8 @@ namespace Slutprojektet
                         }
                     }
 
-                    //skapar en array med antalat platser som använderas har bestämt
+                    /*skapar en array med antalat platser som använderas har bestämt. Arrayen skapar jag för att det är det mest effektiva sättet att spara flera värden
+                     samt så gör detta att jag kan ha ett antal tal som användaren bestämmer istället för att ha typ int1 int2 int3 int4 osv.*/
                     int[] amount = new int[amountInt];
                     Console.WriteLine("Vänligen skriv ut talen");
 
@@ -105,7 +106,7 @@ namespace Slutprojektet
                             //om den inte lyckas convertera input till ett tal-element så blir det fel
                             if (!int.TryParse(input, out element))
                             {
-                                Console.WriteLine("\n Endast siffor, tack.");
+                                Console.WriteLine("Endast siffor, tack.");
                             }
                             else
                             { 
@@ -158,7 +159,7 @@ namespace Slutprojektet
 
                     for (int i = 0; i < amount.Length; i++)
                     {
-                        //int num för att vägleda vilken talposition det är användaren fyller i
+                        //int num för att vägleda vilken talposition det är användaren fyller i, detta displayas i programmet när det körs
                         int num = i + 1;
 
                         bool success = false;
@@ -170,7 +171,7 @@ namespace Slutprojektet
 
                             if (!int.TryParse(input, out element))
                             {
-                                Console.WriteLine("\n Endast siffor, tack.");
+                                Console.WriteLine("Endast siffor, tack.");
                             }
                             else
                             { 
@@ -197,7 +198,6 @@ namespace Slutprojektet
 
                 }
 
-                Console.WriteLine("Success");
                 Console.ReadLine();
 
             }
